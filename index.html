@@ -78,6 +78,68 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-汇编眼中的函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/25/%E6%B1%87%E7%BC%96%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2021-01-25T09:03:49.000Z" itemprop="datePublished">2021-01-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/01/25/%E6%B1%87%E7%BC%96%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0/">汇编眼中的函数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="汇编眼中的函数"><a href="#汇编眼中的函数" class="headerlink" title="汇编眼中的函数"></a><center><font color=#FB7299>汇编眼中的函数</font></center></h1><h5 id="示例代码如下"><a href="#示例代码如下" class="headerlink" title="示例代码如下:"></a><font color=yellow>示例代码如下:</font></h5><pre style="background:black;">
+MOV ebx,1
+MOV ecx,2
+
+ADD ebx,ecx
+MOV eax,ebx
+</pre>
+<h5 id="说明"><a href="#说明" class="headerlink" title="说明:"></a><font color=yellow>说明:</font></h5><pre><code>实现两个数字相加，把相加的结果放入eax中 ADD ebx,ecx
+MOV eax,ebx
+这两行代码就相当于一个函数</code></pre>
+<h6 id="下面来讲如何利用这两行代码的函数"><a href="#下面来讲如何利用这两行代码的函数" class="headerlink" title="下面来讲如何利用这两行代码的函数:"></a><font color=yellow>下面来讲如何利用这两行代码的函数:</font></h6><pre style="background:black;">
+00FFFF01    MOV ebx,1
+00FFFF02    MOV ecx,2
+00FFFF03    CALL 00FFFF20
+--------
+00FFFF20    ADD ebx,ecx
+00FFFF21    MOV eax,ebx
+00FFFF22    RETN
+</pre>
+<pre><code>01,02地址给ebx,ecx赋值
+03地址CALL代码跳转到00FFFF20,此时的eip=00FFFF20,esp=00FFFF04
+20地址将ebx,ecx相加结果在ebx中
+21地址将ebx放入eax中
+22地址rntn返回到04地址继续执行,eip=00FFFF03的值,esp=00FFFF03</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/25/%E6%B1%87%E7%BC%96%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0/" data-id="ckkcchj6l0000d3gzeoz5bfu1" data-title="汇编眼中的函数" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/01/24/hello-world/" class="article-date">
@@ -154,6 +216,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/01/25/%E6%B1%87%E7%BC%96%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0/">汇编眼中的函数</a>
+          </li>
         
           <li>
             <a href="/2021/01/24/hello-world/">Hello World</a>
